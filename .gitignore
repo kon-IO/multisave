@@ -1,2 +1,5 @@
-./Debug/**/
-./Release/**/
+./Debug/**/*
+./Release/**/*
+*.gitignore~
+*.d
+*.o
