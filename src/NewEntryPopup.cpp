@@ -44,11 +44,6 @@ void NewEntryPopup::closePopup(void)
 	emit closed(path.text());
 }
 
-//void NewEntryPopup::closed(QString text) const
-//{
-//
-//}
-
 NewEntryPopup::~NewEntryPopup() {
 	// TODO Auto-generated destructor stubString
 }
