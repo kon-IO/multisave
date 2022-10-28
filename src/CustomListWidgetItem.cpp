@@ -6,6 +6,7 @@
  */
 
 #include "CustomListWidgetItem.h"
+#include "CustomListWidgetItem.h.meta"
 
 uint32_t CustomListWidgetItem::id_counter = 0;
 

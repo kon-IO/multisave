@@ -46,7 +46,8 @@ BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ART
 # Add inputs and outputs from these tool invocations to the build variables 
 
 # All Target
-all: main-build
+all:
+	+@$(MAKE) --no-print-directory pre-build && $(MAKE) --no-print-directory main-build
 
 # Main-build Target
 main-build: MultiSave
@@ -64,6 +65,11 @@ clean:
 	-$(RM) MultiSave
 	-@echo ' '
 
-.PHONY: all clean dependents main-build
+pre-build:
+	-@echo 'Compile meta-objects'
+	-cd ../src && sh meta.sh
+	-@echo ' '
+
+.PHONY: all clean dependents main-build pre-build
 
 -include ../makefile.targets

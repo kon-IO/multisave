@@ -19,6 +19,7 @@
 #include "NewEntryPopup.h"
 
 class MainWidget: public QWidget {
+	Q_OBJECT
 public:
 	MainWidget();
 	virtual ~MainWidget();

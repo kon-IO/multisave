@@ -8,6 +8,7 @@
 #include "MainWidget.h"
 
 #include "CustomListWidgetItem.h"
+#include "MainWidget.h.meta"
 
 MainWidget::MainWidget(): QWidget(), layout(), title("My Window"), lwid(), plusButton("+") {
 	// TODO Auto-generated constructor stub

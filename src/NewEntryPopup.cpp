@@ -9,6 +9,7 @@
 #include <iostream>
 
 #include "NewEntryPopup.h"
+#include "NewEntryPopup.h.meta"
 
 NewEntryPopup::NewEntryPopup(): QWidget(), title("Add file path"), pathLabel("Path"), openDialog("Open dialog"), done("Done") {
 	// TODO Auto-generated constructor stub

@@ -18,6 +18,7 @@
 #include "CustomListWidgetItem.h"
 
 class NewEntryPopup: public QWidget {
+	Q_OBJECT
 public:
 	NewEntryPopup();
 	virtual ~NewEntryPopup();
