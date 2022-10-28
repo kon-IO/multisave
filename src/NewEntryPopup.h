@@ -21,13 +21,13 @@ class NewEntryPopup: public QWidget {
 public:
 	NewEntryPopup();
 	virtual ~NewEntryPopup();
-signals:
-	void closed(QString) const;
 public slots:
 	void popUp(CustomListWidgetItem&);
 private slots:
 	void openFileDialog();
-	void closePopup() const;
+	void closePopup();
+signals:
+	void closed(QString);
 private:
 
 	QGridLayout layout;

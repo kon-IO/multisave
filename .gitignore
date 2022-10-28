@@ -6,3 +6,5 @@ TestCpp
 *.elf
 /Debug/
 /Release/
+Makefile
+*.qmake.stash

@@ -38,17 +38,17 @@ void NewEntryPopup::popUp(CustomListWidgetItem& item)
 	show();
 }
 
-void NewEntryPopup::closePopup() const
+void NewEntryPopup::closePopup(void)
 {
 	emit closed(path.text());
 }
 
-void NewEntryPopup::closed(QString text) const
-{
-
-}
+//void NewEntryPopup::closed(QString text) const
+//{
+//
+//}
 
 NewEntryPopup::~NewEntryPopup() {
-	// TODO Auto-generated destructor stub
+	// TODO Auto-generated destructor stubString
 }
 

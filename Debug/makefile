@@ -38,7 +38,7 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := TestCpp
+BUILD_ARTIFACT_NAME := MultiSave
 BUILD_ARTIFACT_EXTENSION :=
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
@@ -49,19 +49,19 @@ BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ART
 all: main-build
 
 # Main-build Target
-main-build: TestCpp
+main-build: MultiSave
 
 # Tool invocations
-TestCpp: $(OBJS) $(USER_OBJS) makefile $(OPTIONAL_TOOL_DEPS)
+MultiSave: $(OBJS) $(USER_OBJS) makefile $(OPTIONAL_TOOL_DEPS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: GCC C++ Linker'
-	g++ -L/usr/lib/x86_64-linux-gnu -o "TestCpp" $(OBJS) $(USER_OBJS) $(LIBS) -lQt5Core -lQt5Widgets -lQt5Gui
+	g++ -L/usr/lib/x86_64-linux-gnu -o "MultiSave" $(OBJS) $(USER_OBJS) $(LIBS) -lQt5Core -lQt5Widgets -lQt5Gui
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) TestCpp
+	-$(RM) MultiSave
 	-@echo ' '
 
 .PHONY: all clean dependents main-build
