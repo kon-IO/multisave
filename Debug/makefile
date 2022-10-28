@@ -55,7 +55,7 @@ main-build: MultiSave
 MultiSave: $(OBJS) $(USER_OBJS) makefile $(OPTIONAL_TOOL_DEPS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: GCC C++ Linker'
-	g++ -L/usr/lib/x86_64-linux-gnu -o "MultiSave" $(OBJS) $(USER_OBJS) $(LIBS) -lQt5Core -lQt5Widgets -lQt5Gui
+	g++ -L/usr/lib/x86_64-linux-gnu/ -o "MultiSave" $(OBJS) $(USER_OBJS) $(LIBS) -lQt5Core -lQt5Gui -lQt5Widgets
 	@echo 'Finished building target: $@'
 	@echo ' '
 
