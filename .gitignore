@@ -4,3 +4,5 @@
 TestCpp
 *.exe
 *.elf
+/Debug/
+/Release/
