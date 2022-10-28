@@ -8,3 +8,4 @@ MultiSave
 /Release/
 Makefile
 *.qmake.stash
+*.meta
