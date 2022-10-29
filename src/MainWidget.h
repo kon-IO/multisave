@@ -25,7 +25,7 @@ public:
 	virtual ~MainWidget();
 public slots:
 	void popupNewEntryWindow();
-	void unpopupNewEntryWindow(QString);
+	void unpopupNewEntryWindow(CustomListWidgetItem*);
 private:
 	QGridLayout layout;
 	QLabel title;

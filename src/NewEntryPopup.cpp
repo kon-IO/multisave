@@ -11,7 +11,7 @@
 #include "NewEntryPopup.h"
 #include "NewEntryPopup.h.meta"
 
-NewEntryPopup::NewEntryPopup(): QWidget(), title("Add file path"), pathLabel("Path"), openDialog("Open dialog"), done("Done") {
+NewEntryPopup::NewEntryPopup(): QWidget(), lwi(nullptr), title("Add file path"), pathLabel("Path"), openDialog("Open dialog"), done("Done") {
 	// TODO Auto-generated constructor stub
 	path.setPlaceholderText("File path...");
 
@@ -29,19 +29,21 @@ NewEntryPopup::NewEntryPopup(): QWidget(), title("Add file path"), pathLabel("Pa
 
 void NewEntryPopup::openFileDialog()
 {
-	const QString fname = QFileDialog::getOpenFileName(0, "Track file", "${HOME_ENV}");
+	const QString fname = QFileDialog::getOpenFileName(this, "Track file", "${HOME}");
 	path.setText(fname);
 }
 
-void NewEntryPopup::popUp(CustomListWidgetItem& item)
+void NewEntryPopup::popUp(CustomListWidgetItem* item)
 {
-	path.setText(item.text());
+	lwi = item;
+	path.setText(item->text());
 	show();
 }
 
 void NewEntryPopup::closePopup(void)
 {
-	emit closed(path.text());
+	lwi->setText(path.text());
+	emit closed(lwi);
 }
 
 NewEntryPopup::~NewEntryPopup() {

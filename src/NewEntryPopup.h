@@ -23,14 +23,15 @@ public:
 	NewEntryPopup();
 	virtual ~NewEntryPopup();
 public slots:
-	void popUp(CustomListWidgetItem&);
+	void popUp(CustomListWidgetItem*);
 private slots:
 	void openFileDialog();
 	void closePopup();
 signals:
-	void closed(QString);
+	void closed(CustomListWidgetItem*);
 private:
 
+	CustomListWidgetItem* lwi;
 	QGridLayout layout;
 	QLabel title;
 	QLabel pathLabel;

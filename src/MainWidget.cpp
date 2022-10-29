@@ -20,7 +20,6 @@ MainWidget::MainWidget(): QWidget(), layout(), title("My Window"), lwid(), plusB
 
 	layout.addWidget(&title, 0, 0);
 
-	lwid.addItem(new CustomListWidgetItem("text"));
 	layout.addWidget(&lwid, 1, 0);
 
 	connect(&plusButton, &QPushButton::pressed, this, &MainWidget::popupNewEntryWindow);
@@ -34,14 +33,19 @@ MainWidget::MainWidget(): QWidget(), layout(), title("My Window"), lwid(), plusB
 
 void MainWidget::popupNewEntryWindow()
 {
-	CustomListWidgetItem lw("");
+	CustomListWidgetItem* lw = new CustomListWidgetItem("");
+	lwid.addItem(lw);
 	emit entryPopup.popUp(lw);
 }
 
-void MainWidget::unpopupNewEntryWindow(QString str)
+void MainWidget::unpopupNewEntryWindow(CustomListWidgetItem* lwi)
 {
 	entryPopup.hide();
-	lwid.addItem(new CustomListWidgetItem(str));
+	if (lwi->text().isEmpty()) {
+		lwid.removeItemWidget(lwi);
+		delete lwi;
+	}
+//	lwid.addItem(new CustomListWidgetItem(str));
 }
 
 MainWidget::~MainWidget() {
