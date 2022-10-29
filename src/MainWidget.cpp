@@ -5,6 +5,8 @@
  *      Author: kk
  */
 
+#include <iostream>
+
 #include "MainWidget.h"
 
 #include "CustomListWidgetItem.h"
@@ -41,6 +43,7 @@ void MainWidget::popupNewEntryWindow()
 void MainWidget::unpopupNewEntryWindow(CustomListWidgetItem* lwi)
 {
 	entryPopup.hide();
+	std::cerr << lwi->text();
 	if (lwi->text().isEmpty()) {
 		lwid.removeItemWidget(lwi);
 		delete lwi;

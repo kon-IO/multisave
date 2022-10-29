@@ -17,6 +17,12 @@
 
 #include "CustomListWidgetItem.h"
 
+enum class FileStatus {
+	OK,
+	NO_PERMS,
+	OTHER_FAIL
+};
+
 class NewEntryPopup: public QWidget {
 	Q_OBJECT
 public:
@@ -27,9 +33,11 @@ public slots:
 private slots:
 	void openFileDialog();
 	void closePopup();
+	void cancelPopup();
 signals:
 	void closed(CustomListWidgetItem*);
 private:
+	inline bool checkFile(const QString&) const;
 
 	CustomListWidgetItem* lwi;
 	QGridLayout layout;
@@ -37,6 +45,7 @@ private:
 	QLabel pathLabel;
 	QPushButton openDialog;
 	QPushButton done;
+	QPushButton cancel;
 	QLineEdit path;
 };
 
