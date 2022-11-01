@@ -15,13 +15,7 @@
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QPushButton>
 
-#include "CustomListWidgetItem.h"
-
-enum class FileStatus {
-	OK,
-	NO_PERMS,
-	OTHER_FAIL
-};
+#include "CustomTreeWidgetItem.h"
 
 class NewEntryPopup: public QWidget {
 	Q_OBJECT
@@ -29,17 +23,18 @@ public:
 	NewEntryPopup();
 	virtual ~NewEntryPopup();
 public slots:
-	void popUp(CustomListWidgetItem*);
+	void popUp(CustomTreeWidgetItem*);
 private slots:
 	void openFileDialog();
 	void closePopup();
 	void cancelPopup();
 signals:
-	void closed(CustomListWidgetItem*);
+	void closed(CustomTreeWidgetItem*);
 private:
 	inline bool checkFile(const QString&) const;
+	void keyPressEvent(QKeyEvent*);
 
-	CustomListWidgetItem* lwi;
+	CustomTreeWidgetItem* lwi;
 	QGridLayout layout;
 	QLabel title;
 	QLabel pathLabel;

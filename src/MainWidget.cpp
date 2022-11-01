@@ -9,12 +9,14 @@
 
 #include "MainWidget.h"
 
-#include "CustomListWidgetItem.h"
+#include "CustomTreeWidgetItem.h"
 #include "MainWidget.h.meta"
 
-MainWidget::MainWidget(): QWidget(), layout(), title("My Window"), lwid(), plusButton("+") {
+MainWidget::MainWidget(): QWidget(), layout(), title("My Window"), trwid(), plusButton("+") {
 	// TODO Auto-generated constructor stub
 	title.setAlignment(Qt::AlignCenter);
+	trwid.setColumnCount(1);
+	trwid.setHeaderLabels({"Path"});
 
 	QFont titleFont = title.font();
 	titleFont.setPointSize(24);
@@ -22,7 +24,7 @@ MainWidget::MainWidget(): QWidget(), layout(), title("My Window"), lwid(), plusB
 
 	layout.addWidget(&title, 0, 0);
 
-	layout.addWidget(&lwid, 1, 0);
+	layout.addWidget(&trwid, 1, 0);
 
 	connect(&plusButton, &QPushButton::pressed, this, &MainWidget::popupNewEntryWindow);
 	connect(&entryPopup, &NewEntryPopup::closed, this, &MainWidget::unpopupNewEntryWindow);
@@ -35,17 +37,18 @@ MainWidget::MainWidget(): QWidget(), layout(), title("My Window"), lwid(), plusB
 
 void MainWidget::popupNewEntryWindow()
 {
-	CustomListWidgetItem* lw = new CustomListWidgetItem("");
-	lwid.addItem(lw);
+	CustomTreeWidgetItem* lw = new CustomTreeWidgetItem("");
+	trwid.addTopLevelItem(lw);
 	emit entryPopup.popUp(lw);
 }
 
-void MainWidget::unpopupNewEntryWindow(CustomListWidgetItem* lwi)
+void MainWidget::unpopupNewEntryWindow(CustomTreeWidgetItem* lwi)
 {
+	resize(sizeHint());
 	entryPopup.hide();
-	std::cerr << lwi->text();
-	if (lwi->text().isEmpty()) {
-		lwid.removeItemWidget(lwi);
+	std::cout << lwi->text(0).toStdString() << std::endl;
+	if (lwi->text(0).isEmpty()) {
+		trwid.removeItemWidget(lwi, 0);
 		delete lwi;
 	}
 //	lwid.addItem(new CustomListWidgetItem(str));

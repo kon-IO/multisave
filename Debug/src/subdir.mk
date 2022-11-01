@@ -4,22 +4,25 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
-../src/CustomListWidgetItem.cpp \
+../src/CustomTreeWidgetItem.cpp \
+../src/FileEntry.cpp \
 ../src/MainWidget.cpp \
-../src/NewEntryPopup.cpp \
-../src/TestCpp.cpp 
+../src/Multisave.cpp \
+../src/NewEntryPopup.cpp 
 
 CPP_DEPS += \
-./src/CustomListWidgetItem.d \
+./src/CustomTreeWidgetItem.d \
+./src/FileEntry.d \
 ./src/MainWidget.d \
-./src/NewEntryPopup.d \
-./src/TestCpp.d 
+./src/Multisave.d \
+./src/NewEntryPopup.d 
 
 OBJS += \
-./src/CustomListWidgetItem.o \
+./src/CustomTreeWidgetItem.o \
+./src/FileEntry.o \
 ./src/MainWidget.o \
-./src/NewEntryPopup.o \
-./src/TestCpp.o 
+./src/Multisave.o \
+./src/NewEntryPopup.o 
 
 
 # Each subdirectory must supply rules for building sources it contributes
@@ -34,7 +37,7 @@ src/%.o: ../src/%.cpp src/subdir.mk
 clean: clean-src
 
 clean-src:
-	-$(RM) ./src/CustomListWidgetItem.d ./src/CustomListWidgetItem.o ./src/MainWidget.d ./src/MainWidget.o ./src/NewEntryPopup.d ./src/NewEntryPopup.o ./src/TestCpp.d ./src/TestCpp.o
+	-$(RM) ./src/CustomTreeWidgetItem.d ./src/CustomTreeWidgetItem.o ./src/FileEntry.d ./src/FileEntry.o ./src/MainWidget.d ./src/MainWidget.o ./src/Multisave.d ./src/Multisave.o ./src/NewEntryPopup.d ./src/NewEntryPopup.o
 
 .PHONY: clean-src
 

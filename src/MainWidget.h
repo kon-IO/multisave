@@ -11,7 +11,7 @@
 #include <QtWidgets/QWidget>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QGridLayout>
-#include <QtWidgets/QListWidget>
+#include <QtWidgets/QTreeWidget>
 #include <QtWidgets/QPushButton>
 
 #include <QtWidgets/QWidget>
@@ -25,11 +25,11 @@ public:
 	virtual ~MainWidget();
 public slots:
 	void popupNewEntryWindow();
-	void unpopupNewEntryWindow(CustomListWidgetItem*);
+	void unpopupNewEntryWindow(CustomTreeWidgetItem*);
 private:
 	QGridLayout layout;
 	QLabel title;
-	QListWidget lwid;
+	QTreeWidget trwid;
 	QPushButton plusButton;
 
 	NewEntryPopup entryPopup;

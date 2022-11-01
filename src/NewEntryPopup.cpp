@@ -7,6 +7,7 @@
 
 #include <QtWidgets/QFileDialog>
 #include <QtWidgets/QMessageBox>
+#include <QtGui/QKeyEvent>
 #include <iostream>
 
 #include "NewEntryPopup.h"
@@ -32,6 +33,7 @@ NewEntryPopup::NewEntryPopup(): QWidget(), lwi(nullptr), title("Add file path"),
 	layout.addWidget(&done, 2, 1, 1, 2);
 
 	setLayout(&layout);
+	setFixedSize(sizeHint());
 }
 
 void NewEntryPopup::openFileDialog()
@@ -40,21 +42,21 @@ void NewEntryPopup::openFileDialog()
 	path.setText(fname);
 }
 
-void NewEntryPopup::popUp(CustomListWidgetItem* item)
+void NewEntryPopup::popUp(CustomTreeWidgetItem* item)
 {
 	lwi = item;
-	path.setText(item->text());
+	path.setText(item->text(0));
 	show();
 }
 
 void NewEntryPopup::closePopup(void)
 {
-	const QString str = path.text();
+	const QString str = QDir::toNativeSeparators(path.text());
 	if (!checkFile(str)) {
 		QMessageBox::warning(this, "Error", QString("File ").append(str).append(" could not be opened"));
 		return;
 	}
-	lwi->setText(path.text());
+	lwi->setText(0, str);
 	emit closed(lwi);
 }
 
@@ -66,6 +68,20 @@ void NewEntryPopup::cancelPopup()
 inline bool NewEntryPopup::checkFile(const QString& fname) const
 {
 	return QFile::exists(fname) && QFileInfo(fname).isFile();
+}
+
+void NewEntryPopup::keyPressEvent(QKeyEvent *event)
+{
+	switch (event->key()) {
+	case Qt::Key_Return:
+		closePopup();
+		break;
+	case Qt::Key_Escape:
+		cancelPopup();
+		break;
+	default:
+		break;
+	}
 }
 
 NewEntryPopup::~NewEntryPopup() {
