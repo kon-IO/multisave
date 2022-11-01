@@ -18,6 +18,8 @@
 
 #include "NewEntryPopup.h"
 
+#include "CustomTreeWidget.h"
+
 class MainWidget: public QWidget {
 	Q_OBJECT
 public:
@@ -26,11 +28,13 @@ public:
 public slots:
 	void popupNewEntryWindow();
 	void unpopupNewEntryWindow(CustomTreeWidgetItem*);
+	void itemClicked(QTreeWidgetItem*);
 private:
 	QGridLayout layout;
 	QLabel title;
-	QTreeWidget trwid;
+	CustomTreeWidget trwid;
 	QPushButton plusButton;
+	QPushButton entryPlusButton;
 
 	NewEntryPopup entryPopup;
 };

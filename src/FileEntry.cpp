@@ -10,7 +10,7 @@
 
 #include <QtCore/QFile>
 
-FileEntry::FileEntry(const QString& parent_, const QString fname): filename(fname) {
+FileEntry::FileEntry(const QString& fname): filename(fname) {
 	// TODO Auto-generated constructor stub
 	setText(0, fname);
 }

@@ -12,7 +12,7 @@
 #include "CustomTreeWidgetItem.h"
 #include "MainWidget.h.meta"
 
-MainWidget::MainWidget(): QWidget(), layout(), title("My Window"), trwid(), plusButton("+") {
+MainWidget::MainWidget(): QWidget(), layout(), title("My Window"), trwid(), plusButton("+"), entryPlusButton("") {
 	// TODO Auto-generated constructor stub
 	title.setAlignment(Qt::AlignCenter);
 	trwid.setColumnCount(1);
@@ -29,8 +29,11 @@ MainWidget::MainWidget(): QWidget(), layout(), title("My Window"), trwid(), plus
 	connect(&plusButton, &QPushButton::pressed, this, &MainWidget::popupNewEntryWindow);
 	connect(&entryPopup, &NewEntryPopup::closed, this, &MainWidget::unpopupNewEntryWindow);
 
+	connect(&trwid, &CustomTreeWidget::itemClicked, this, &MainWidget::itemClicked);
+
 	plusButton.setFont(titleFont);
 	layout.addWidget(&plusButton);
+	layout.addWidget(&entryPlusButton);
 
 	setLayout(&layout);
 }
@@ -52,6 +55,12 @@ void MainWidget::unpopupNewEntryWindow(CustomTreeWidgetItem* lwi)
 		delete lwi;
 	}
 //	lwid.addItem(new CustomListWidgetItem(str));
+}
+
+void MainWidget::itemClicked(QTreeWidgetItem* item)
+{
+	CustomTreeWidgetItem *it = static_cast<CustomTreeWidgetItem*>(item);
+	entryPlusButton.setText(QString("+ ").append(it->text(0)));
 }
 
 MainWidget::~MainWidget() {

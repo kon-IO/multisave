@@ -13,7 +13,7 @@
 
 class FileEntry: public QTreeWidgetItem {
 public:
-	FileEntry(const QString&, const QString);
+	FileEntry(const QString&);
 	virtual ~FileEntry();
 private:
 	const QString filename;
