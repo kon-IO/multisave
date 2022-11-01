@@ -9,9 +9,9 @@
 #define FILEENTRY_H_
 
 #include <QtCore/QFileSystemWatcher>
-#include <QtWidgets/QTreeWidget>
+#include "CustomTreeWidgetItem.h"
 
-class FileEntry: public QTreeWidgetItem {
+class FileEntry: public CustomTreeWidgetItem {
 public:
 	FileEntry(const QString&);
 	virtual ~FileEntry();

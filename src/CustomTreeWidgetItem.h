@@ -1,7 +1,7 @@
 /*
- * CustomListWidgetItem.h
+ * CustomTreeWidgetItem.h
  *
- *  Created on: Oct 19, 2022
+ *  Created on: Nov 1, 2022
  *      Author: kk
  */
 
@@ -9,23 +9,12 @@
 #define CUSTOMTREEWIDGETITEM_H_
 
 #include <QtWidgets/QTreeWidgetItem>
-#include <QtCore/QFileSystemWatcher>
-#include <QtCore/QFile>
 
-#include <cstdint>
-
-class CustomTreeWidgetItem: public QObject, public QTreeWidgetItem {
-	Q_OBJECT
+class CustomTreeWidgetItem: public QTreeWidgetItem {
 public:
-	CustomTreeWidgetItem(const QString&);
+	CustomTreeWidgetItem(bool, const QString&);
 	virtual ~CustomTreeWidgetItem();
-	uint32_t getId() const;
-private slots:
-	void fileChanged(const QString&);
-private:
-	static uint32_t id_counter;
-	QFileSystemWatcher fsw;
-	uint32_t id;
+	bool isBeingWatched;
 };
 
 #endif /* CUSTOMTREEWIDGETITEM_H_ */

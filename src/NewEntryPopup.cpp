@@ -42,7 +42,7 @@ void NewEntryPopup::openFileDialog()
 	path.setText(fname);
 }
 
-void NewEntryPopup::popUp(CustomTreeWidgetItem* item)
+void NewEntryPopup::popUp(CustomToplevelTreeItem* item)
 {
 	lwi = item;
 	path.setText(item->text(0));

@@ -9,10 +9,12 @@
 #include "FileEntry.h.meta"
 
 #include <QtCore/QFile>
+#include <QtGui/QKeyEvent>
 
-FileEntry::FileEntry(const QString& fname): filename(fname) {
+#include <iostream>
+
+FileEntry::FileEntry(const QString& fname): CustomTreeWidgetItem(false, fname), filename(fname) {
 	// TODO Auto-generated constructor stub
-	setText(0, fname);
 }
 
 FileEntry::~FileEntry() {

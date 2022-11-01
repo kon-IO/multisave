@@ -9,7 +9,7 @@
 
 #include "MainWidget.h"
 
-#include "CustomTreeWidgetItem.h"
+#include "CustomToplevelTreeItem.h"
 #include "MainWidget.h.meta"
 
 MainWidget::MainWidget(): QWidget(), layout(), title("My Window"), trwid(), plusButton("+"), entryPlusButton("") {
@@ -40,12 +40,12 @@ MainWidget::MainWidget(): QWidget(), layout(), title("My Window"), trwid(), plus
 
 void MainWidget::popupNewEntryWindow()
 {
-	CustomTreeWidgetItem* lw = new CustomTreeWidgetItem("");
+	CustomToplevelTreeItem *lw = new CustomToplevelTreeItem("");
 	trwid.addTopLevelItem(lw);
 	emit entryPopup.popUp(lw);
 }
 
-void MainWidget::unpopupNewEntryWindow(CustomTreeWidgetItem* lwi)
+void MainWidget::unpopupNewEntryWindow(CustomToplevelTreeItem* lwi)
 {
 	resize(sizeHint());
 	entryPopup.hide();
@@ -59,8 +59,12 @@ void MainWidget::unpopupNewEntryWindow(CustomTreeWidgetItem* lwi)
 
 void MainWidget::itemClicked(QTreeWidgetItem* item)
 {
-	CustomTreeWidgetItem *it = static_cast<CustomTreeWidgetItem*>(item);
-	entryPlusButton.setText(QString("+ ").append(it->text(0)));
+	CustomToplevelTreeItem *it = static_cast<CustomToplevelTreeItem*>(item);
+	if (item->childCount() == 0) {
+		entryPlusButton.setText(QString("- ").append(item->text(0)));
+		return;
+	}
+	entryPlusButton.setText(QString("+ ").append(item->text(0)));
 }
 
 MainWidget::~MainWidget() {

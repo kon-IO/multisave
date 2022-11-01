@@ -4,6 +4,7 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
+../src/CustomToplevelTreeItem.cpp \
 ../src/CustomTreeWidget.cpp \
 ../src/CustomTreeWidgetItem.cpp \
 ../src/FileEntry.cpp \
@@ -12,6 +13,7 @@ CPP_SRCS += \
 ../src/NewEntryPopup.cpp 
 
 CPP_DEPS += \
+./src/CustomToplevelTreeItem.d \
 ./src/CustomTreeWidget.d \
 ./src/CustomTreeWidgetItem.d \
 ./src/FileEntry.d \
@@ -20,6 +22,7 @@ CPP_DEPS += \
 ./src/NewEntryPopup.d 
 
 OBJS += \
+./src/CustomToplevelTreeItem.o \
 ./src/CustomTreeWidget.o \
 ./src/CustomTreeWidgetItem.o \
 ./src/FileEntry.o \
@@ -40,7 +43,7 @@ src/%.o: ../src/%.cpp src/subdir.mk
 clean: clean-src
 
 clean-src:
-	-$(RM) ./src/CustomTreeWidget.d ./src/CustomTreeWidget.o ./src/CustomTreeWidgetItem.d ./src/CustomTreeWidgetItem.o ./src/FileEntry.d ./src/FileEntry.o ./src/MainWidget.d ./src/MainWidget.o ./src/Multisave.d ./src/Multisave.o ./src/NewEntryPopup.d ./src/NewEntryPopup.o
+	-$(RM) ./src/CustomToplevelTreeItem.d ./src/CustomToplevelTreeItem.o ./src/CustomTreeWidget.d ./src/CustomTreeWidget.o ./src/CustomTreeWidgetItem.d ./src/CustomTreeWidgetItem.o ./src/FileEntry.d ./src/FileEntry.o ./src/MainWidget.d ./src/MainWidget.o ./src/Multisave.d ./src/Multisave.o ./src/NewEntryPopup.d ./src/NewEntryPopup.o
 
 .PHONY: clean-src
 

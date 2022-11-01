@@ -27,7 +27,7 @@ public:
 	virtual ~MainWidget();
 public slots:
 	void popupNewEntryWindow();
-	void unpopupNewEntryWindow(CustomTreeWidgetItem*);
+	void unpopupNewEntryWindow(CustomToplevelTreeItem*);
 	void itemClicked(QTreeWidgetItem*);
 private:
 	QGridLayout layout;
