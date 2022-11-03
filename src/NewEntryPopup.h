@@ -20,7 +20,7 @@
 class NewEntryPopup: public QWidget {
 	Q_OBJECT
 public:
-	NewEntryPopup();
+	NewEntryPopup(QWidget* parent_);
 	virtual ~NewEntryPopup();
 public slots:
 	void popUp(CustomTreeWidgetItem*);

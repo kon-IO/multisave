@@ -8,12 +8,12 @@
 #include <iostream>
 
 #include "MainWidget.h"
+#include "MainWidget.h.meta"
 
 #include "CustomToplevelTreeItem.h"
 #include "CustomTreeWidgetItem.h"
-#include "MainWidget.h.meta"
 
-MainWidget::MainWidget(): QWidget(), popupForToplevelEntry(true), selectedItem(nullptr), layout(), title("Multisave"), trwid(), plusButton("+"), entryPlusButton("")
+MainWidget::MainWidget(): QWidget(), popupForToplevelEntry(true), selectedItem(nullptr), layout(), title("Multisave"), trwid(), plusButton("+"), entryPlusButton(""), entryPopup(this)
 {
 	// TODO Auto-generated constructor stub
 	setWindowModality(Qt::NonModal);
@@ -67,6 +67,8 @@ void MainWidget::unpopupNewEntryWindow(CustomTreeWidgetItem* lwi)
 	if (lwi->text(0).isEmpty()) {
 		trwid.removeItemWidget(lwi, 0);
 		delete lwi;
+	} else if (popupForToplevelEntry) {
+		static_cast<CustomToplevelTreeItem*>(lwi)->updatePath(lwi->text(0));
 	}
 	popupForToplevelEntry = true;
 //	lwid.addItem(new CustomListWidgetItem(str));

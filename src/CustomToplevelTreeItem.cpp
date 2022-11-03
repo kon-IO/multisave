@@ -10,25 +10,50 @@
 #include "CustomToplevelTreeItem.h.meta"
 
 #include <iostream>
+#include <QtCore/QFile>
 
 uint32_t CustomToplevelTreeItem::id_counter = 0;
 
 CustomToplevelTreeItem::CustomToplevelTreeItem(const QString &text) :
-		CustomTreeWidgetItem(true, text), id(id_counter++) {
+		CustomTreeWidgetItem(true, text), filename(text), id(id_counter++)
+{
 	// TODO Auto-generated constructor stub
 	QObject::connect(&fsw, &QFileSystemWatcher::fileChanged, this, &CustomToplevelTreeItem::fileChanged);
 }
 
 void CustomToplevelTreeItem::fileChanged(const QString& path)
 {
+	QFile file(path);
+	file.open(QIODevice::ReadOnly);
+	QByteArray arr = file.readAll();
+	file.close();
+
+	int count = childCount();
+	for (int i = 0; i < count; i++) {
+		QFile f(child(i)->text(0));
+		f.open(QIODevice::WriteOnly);
+		f.write(arr);
+		f.close();
+		std::cout << child(i)->text(0).toStdString() << std::endl;
+	}
+	fsw.removePath(filename);
+	fsw.addPath(filename);
 	std::cout << "File " << path.toStdString() << " changed" << std::endl;
 }
 
-uint32_t CustomToplevelTreeItem::getId() const {
+void CustomToplevelTreeItem::updatePath(const QString& text)
+{
+	filename = text;
+	fsw.addPath(text);
+}
+
+uint32_t CustomToplevelTreeItem::getId() const
+{
 	return id;
 }
 
-CustomToplevelTreeItem::~CustomToplevelTreeItem() {
+CustomToplevelTreeItem::~CustomToplevelTreeItem()
+{
 	// TODO Auto-generated destructor stub
 }
 

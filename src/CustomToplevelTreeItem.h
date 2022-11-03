@@ -21,11 +21,13 @@ class CustomToplevelTreeItem: public QObject, public CustomTreeWidgetItem {
 public:
 	CustomToplevelTreeItem(const QString&);
 	virtual ~CustomToplevelTreeItem();
+	void updatePath(const QString&);
 	uint32_t getId() const;
 private slots:
 	void fileChanged(const QString&);
 private:
 	static uint32_t id_counter;
+	QString filename;
 	QFileSystemWatcher fsw;
 	uint32_t id;
 };

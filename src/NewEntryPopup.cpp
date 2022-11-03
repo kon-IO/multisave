@@ -13,7 +13,7 @@
 #include "NewEntryPopup.h"
 #include "NewEntryPopup.h.meta"
 
-NewEntryPopup::NewEntryPopup(): QWidget(), lwi(nullptr), title("Add file path"), pathLabel("Path"), openDialog("Open dialog"), done("Done"), cancel("Cancel")
+NewEntryPopup::NewEntryPopup(QWidget *parent_): QWidget(parent_), lwi(nullptr), title("Add file path"), pathLabel("Path"), openDialog("Open dialog"), done("Done"), cancel("Cancel")
 {
 	// TODO Auto-generated constructor stub
 	setWindowFlags(Qt::Window
@@ -45,7 +45,11 @@ NewEntryPopup::NewEntryPopup(): QWidget(), lwi(nullptr), title("Add file path"),
 
 void NewEntryPopup::openFileDialog()
 {
-	const QString fname = QFileDialog::getOpenFileName(this, "Track file", "${HOME_ENV}");
+	QString fname;
+	if (lwi->isBeingWatched)
+		fname = QFileDialog::getOpenFileName(this, "Track file", "${HOME_ENV}");
+	else
+		fname = QFileDialog::getSaveFileName(this, "Track file", "${HOME_ENV}");
 	path.setText(fname);
 }
 
@@ -73,16 +77,16 @@ void NewEntryPopup::cancelPopup()
 	emit closed(lwi);
 }
 
-inline bool NewEntryPopup::checkFile(const QString& fname) const
+bool NewEntryPopup::checkFile(const QString& fname) const
 {
 	if (lwi->isBeingWatched)
 		return QFile::exists(fname) && QFileInfo(fname).isFile();
 	bool res;
 	QFile file(fname);
-	if (file.open(QIODevice::Text | QIODevice::WriteOnly | QIODevice::NewOnly)) {
-		res = false;
-	} else {
+	if (file.open(QIODevice::WriteOnly)) {
 		res = true;
+	} else {
+		res = false;
 	}
 	file.close();
 	return res;
