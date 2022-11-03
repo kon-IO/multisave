@@ -4,8 +4,10 @@
 MultiSave
 *.exe
 *.elf
-/Debug/
-/Release/
+Debug/*
+Release/*
 Makefile
 *.qmake.stash
 *.meta
+/Debug/
+/Release/
