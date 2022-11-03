@@ -10,9 +10,11 @@
 #include "MainWidget.h"
 
 #include "CustomToplevelTreeItem.h"
+#include "CustomTreeWidgetItem.h"
 #include "MainWidget.h.meta"
 
-MainWidget::MainWidget(): QWidget(), popupForToplevelEntry(true), selectedItem(nullptr), layout(), title("Multisave"), trwid(), plusButton("+"), entryPlusButton("") {
+MainWidget::MainWidget(): QWidget(), popupForToplevelEntry(true), selectedItem(nullptr), layout(), title("Multisave"), trwid(), plusButton("+"), entryPlusButton("")
+{
 	// TODO Auto-generated constructor stub
 	setWindowModality(Qt::NonModal);
 	title.setAlignment(Qt::AlignCenter);
@@ -35,8 +37,7 @@ MainWidget::MainWidget(): QWidget(), popupForToplevelEntry(true), selectedItem(n
 	connect(&trwid, &CustomTreeWidget::itemClicked, this, &MainWidget::itemClicked);
 
 	plusButton.setFont(titleFont);
-	entryMinusButton.setVisible(false);
-	entryPlusButton.setVisible(false);
+	removeEntryButtons();
 
 	layout.addWidget(&plusButton);
 	layout.addWidget(&entryPlusButton);
@@ -47,16 +48,18 @@ MainWidget::MainWidget(): QWidget(), popupForToplevelEntry(true), selectedItem(n
 
 void MainWidget::popupNewEntryWindow()
 {
-	CustomToplevelTreeItem *lw = new CustomToplevelTreeItem("");
+	CustomTreeWidgetItem *lw;
 	if (popupForToplevelEntry) {
+		lw = new CustomToplevelTreeItem("");
 		trwid.addTopLevelItem(lw);
 	} else {
+		lw = new CustomTreeWidgetItem(false, "");
 		selectedItem->addChild(lw);
 	}
 	emit entryPopup.popUp(lw);
 }
 
-void MainWidget::unpopupNewEntryWindow(CustomToplevelTreeItem* lwi)
+void MainWidget::unpopupNewEntryWindow(CustomTreeWidgetItem* lwi)
 {
 	resize(sizeHint());
 	entryPopup.hide();
@@ -71,7 +74,7 @@ void MainWidget::unpopupNewEntryWindow(CustomToplevelTreeItem* lwi)
 
 void MainWidget::itemClicked(QTreeWidgetItem* item)
 {
-	CustomToplevelTreeItem *it = static_cast<CustomToplevelTreeItem*>(item);
+	CustomTreeWidgetItem *it = static_cast<CustomTreeWidgetItem*>(item);
 	selectedItem = it;
 	entryMinusButton.setText(QString("- ").append(it->text(0)));
 	entryMinusButton.setVisible(true);
@@ -97,6 +100,13 @@ void MainWidget::removeItem()
 	if (selectedItem == nullptr)
 		return;
 	removeSelected();
+	removeEntryButtons();
+}
+
+inline void MainWidget::removeEntryButtons()
+{
+	entryPlusButton.setVisible(false);
+	entryMinusButton.setVisible(false);
 }
 
 inline void MainWidget::removeSelected()
@@ -106,7 +116,7 @@ inline void MainWidget::removeSelected()
 	selectedItem = nullptr;
 }
 
-MainWidget::~MainWidget() {
+MainWidget::~MainWidget()
+{
 	// TODO Auto-generated destructor stub
 }
-

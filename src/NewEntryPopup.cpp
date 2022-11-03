@@ -13,7 +13,8 @@
 #include "NewEntryPopup.h"
 #include "NewEntryPopup.h.meta"
 
-NewEntryPopup::NewEntryPopup(): QWidget(), lwi(nullptr), title("Add file path"), pathLabel("Path"), openDialog("Open dialog"), done("Done"), cancel("Cancel") {
+NewEntryPopup::NewEntryPopup(): QWidget(), lwi(nullptr), title("Add file path"), pathLabel("Path"), openDialog("Open dialog"), done("Done"), cancel("Cancel")
+{
 	// TODO Auto-generated constructor stub
 	setWindowFlags(Qt::Window
 		| Qt::WindowMinimizeButtonHint
@@ -48,14 +49,14 @@ void NewEntryPopup::openFileDialog()
 	path.setText(fname);
 }
 
-void NewEntryPopup::popUp(CustomToplevelTreeItem* item)
+void NewEntryPopup::popUp(CustomTreeWidgetItem* item)
 {
 	lwi = item;
 	path.setText(item->text(0));
 	show();
 }
 
-void NewEntryPopup::closePopup(void)
+void NewEntryPopup::closePopup()
 {
 	const QString str = QDir::toNativeSeparators(path.text());
 	if (!checkFile(str)) {
@@ -74,7 +75,17 @@ void NewEntryPopup::cancelPopup()
 
 inline bool NewEntryPopup::checkFile(const QString& fname) const
 {
-	return QFile::exists(fname) && QFileInfo(fname).isFile();
+	if (lwi->isBeingWatched)
+		return QFile::exists(fname) && QFileInfo(fname).isFile();
+	bool res;
+	QFile file(fname);
+	if (file.open(QIODevice::Text | QIODevice::WriteOnly | QIODevice::NewOnly)) {
+		res = false;
+	} else {
+		res = true;
+	}
+	file.close();
+	return res;
 }
 
 void NewEntryPopup::keyPressEvent(QKeyEvent *event)
@@ -91,7 +102,8 @@ void NewEntryPopup::keyPressEvent(QKeyEvent *event)
 	}
 }
 
-NewEntryPopup::~NewEntryPopup() {
+NewEntryPopup::~NewEntryPopup()
+{
 	// TODO Auto-generated destructor stubString
 }
 

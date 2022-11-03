@@ -27,13 +27,14 @@ public:
 	virtual ~MainWidget();
 public slots:
 	void popupNewEntryWindow();
-	void unpopupNewEntryWindow(CustomToplevelTreeItem*);
+	void unpopupNewEntryWindow(CustomTreeWidgetItem*);
 	void itemClicked(QTreeWidgetItem*);
 	void addItem();
 	void removeItem();
 private:
 	bool popupForToplevelEntry;
 	inline void removeSelected();
+	inline void removeEntryButtons();
 
 	CustomTreeWidgetItem *selectedItem;
 	QGridLayout layout;

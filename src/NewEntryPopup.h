@@ -15,7 +15,7 @@
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QPushButton>
 
-#include "CustomToplevelTreeItem.h"
+#include "CustomTreeWidgetItem.h"
 
 class NewEntryPopup: public QWidget {
 	Q_OBJECT
@@ -23,18 +23,18 @@ public:
 	NewEntryPopup();
 	virtual ~NewEntryPopup();
 public slots:
-	void popUp(CustomToplevelTreeItem*);
+	void popUp(CustomTreeWidgetItem*);
 private slots:
 	void openFileDialog();
 	void closePopup();
 	void cancelPopup();
 signals:
-	void closed(CustomToplevelTreeItem*);
+	void closed(CustomTreeWidgetItem*);
 private:
 	inline bool checkFile(const QString&) const;
 	void keyPressEvent(QKeyEvent*);
 
-	CustomToplevelTreeItem* lwi;
+	CustomTreeWidgetItem* lwi;
 	QGridLayout layout;
 	QLabel title;
 	QLabel pathLabel;
