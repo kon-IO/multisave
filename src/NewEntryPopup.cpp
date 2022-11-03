@@ -26,7 +26,12 @@ NewEntryPopup::NewEntryPopup(): QWidget(), lwi(nullptr), title("Add file path"),
 	connect(&done, &QPushButton::clicked, this, &NewEntryPopup::closePopup);
 	connect(&cancel, &QPushButton::clicked, this, &NewEntryPopup::cancelPopup);
 
-	layout.addWidget(&title, 0, 0, 1, 2);
+	title.setAlignment(Qt::AlignCenter);
+	QFont font = title.font();
+	font.setPointSize(20);
+	title.setFont(font);
+
+	layout.addWidget(&title, 0, 0, 1, 3);
 	layout.addWidget(&pathLabel, 1, 0);
 	layout.addWidget(&path, 1, 1);
 	layout.addWidget(&openDialog, 1, 2);

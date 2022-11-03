@@ -7,7 +7,7 @@
 
 #include "CustomTreeWidgetItem.h"
 
-CustomTreeWidgetItem::CustomTreeWidgetItem(bool watched, const QString& text): isBeingWatched(watched), QTreeWidgetItem({text}) {
+CustomTreeWidgetItem::CustomTreeWidgetItem(bool watched, const QString& text): QTreeWidgetItem({text}), isBeingWatched(watched) {
 	// TODO Auto-generated constructor stub
 
 }

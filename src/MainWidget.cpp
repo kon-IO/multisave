@@ -12,7 +12,7 @@
 #include "CustomToplevelTreeItem.h"
 #include "MainWidget.h.meta"
 
-MainWidget::MainWidget(): QWidget(), popupForToplevelEntry(true), selectedItem(nullptr), layout(), title("My Window"), trwid(), plusButton("+"), entryPlusButton("") {
+MainWidget::MainWidget(): QWidget(), popupForToplevelEntry(true), selectedItem(nullptr), layout(), title("Multisave"), trwid(), plusButton("+"), entryPlusButton("") {
 	// TODO Auto-generated constructor stub
 	setWindowModality(Qt::NonModal);
 	title.setAlignment(Qt::AlignCenter);
