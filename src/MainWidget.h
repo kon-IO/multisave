@@ -2,7 +2,7 @@
  * MainWidget.h
  *
  *  Created on: Oct 19, 2022
- *      Author: kk
+ *      Author: kon-io
  */
 
 #ifndef MAINWIDGET_H_
@@ -29,12 +29,19 @@ public slots:
 	void popupNewEntryWindow();
 	void unpopupNewEntryWindow(CustomToplevelTreeItem*);
 	void itemClicked(QTreeWidgetItem*);
+	void addItem();
+	void removeItem();
 private:
+	bool popupForToplevelEntry;
+	inline void removeSelected();
+
+	CustomTreeWidgetItem *selectedItem;
 	QGridLayout layout;
 	QLabel title;
 	CustomTreeWidget trwid;
 	QPushButton plusButton;
 	QPushButton entryPlusButton;
+	QPushButton entryMinusButton;
 
 	NewEntryPopup entryPopup;
 };

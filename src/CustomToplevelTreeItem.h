@@ -2,7 +2,7 @@
  * CustomListWidgetItem.h
  *
  *  Created on: Oct 19, 2022
- *      Author: kk
+ *      Author: kon-io
  */
 
 #ifndef CUSTOMTOPLEVELTREEITEM_H_

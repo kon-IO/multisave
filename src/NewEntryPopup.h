@@ -2,7 +2,7 @@
  * NewEntryPopup.h
  *
  *  Created on: Oct 19, 2022
- *      Author: kk
+ *      Author: kon-io
  */
 
 #ifndef NEWENTRYPOPUP_H_

@@ -2,7 +2,7 @@
  * NewEntryPopup.cpp
  *
  *  Created on: Oct 19, 2022
- *      Author: kk
+ *      Author: kon-io
  */
 
 #include <QtWidgets/QFileDialog>
@@ -18,6 +18,7 @@ NewEntryPopup::NewEntryPopup(): QWidget(), lwi(nullptr), title("Add file path"),
 	setWindowFlags(Qt::Window
 		| Qt::WindowMinimizeButtonHint
 		| Qt::WindowMaximizeButtonHint);
+	setWindowModality(Qt::ApplicationModal);
 	setWindowTitle("MultiSave");
 	path.setPlaceholderText("File path...");
 
@@ -57,6 +58,7 @@ void NewEntryPopup::closePopup(void)
 		return;
 	}
 	lwi->setText(0, str);
+//	setWindowModality(Qt::NonModal);
 	emit closed(lwi);
 }
 

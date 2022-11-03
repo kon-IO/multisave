@@ -1,9 +1,9 @@
 //============================================================================
-// Name        : TestCpp.cpp
+// Name        : Multisave.cpp
 // Author      : kon-io
 // Version     :
 // Copyright   : Copyright (c) 2022 Konstantinos Koliopoulos
-// Description : Hello World in C++, Ansi-style
+// Description : Entry point of Multisave
 //============================================================================
 
 #include <iostream>

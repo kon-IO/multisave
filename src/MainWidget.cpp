@@ -2,7 +2,7 @@
  * MainWidget.cpp
  *
  *  Created on: Oct 19, 2022
- *      Author: kk
+ *      Author: kon-io
  */
 
 #include <iostream>
@@ -12,8 +12,9 @@
 #include "CustomToplevelTreeItem.h"
 #include "MainWidget.h.meta"
 
-MainWidget::MainWidget(): QWidget(), layout(), title("My Window"), trwid(), plusButton("+"), entryPlusButton("") {
+MainWidget::MainWidget(): QWidget(), popupForToplevelEntry(true), selectedItem(nullptr), layout(), title("My Window"), trwid(), plusButton("+"), entryPlusButton("") {
 	// TODO Auto-generated constructor stub
+	setWindowModality(Qt::NonModal);
 	title.setAlignment(Qt::AlignCenter);
 	trwid.setColumnCount(1);
 	trwid.setHeaderLabels({"Path"});
@@ -26,14 +27,20 @@ MainWidget::MainWidget(): QWidget(), layout(), title("My Window"), trwid(), plus
 
 	layout.addWidget(&trwid, 1, 0);
 
-	connect(&plusButton, &QPushButton::pressed, this, &MainWidget::popupNewEntryWindow);
+	connect(&plusButton, &QPushButton::clicked, this, &MainWidget::popupNewEntryWindow);
+	connect(&entryPlusButton, &QPushButton::clicked, this, &MainWidget::addItem);
+	connect(&entryMinusButton, &QPushButton::clicked, this, &MainWidget::removeItem);
 	connect(&entryPopup, &NewEntryPopup::closed, this, &MainWidget::unpopupNewEntryWindow);
 
 	connect(&trwid, &CustomTreeWidget::itemClicked, this, &MainWidget::itemClicked);
 
 	plusButton.setFont(titleFont);
+	entryMinusButton.setVisible(false);
+	entryPlusButton.setVisible(false);
+
 	layout.addWidget(&plusButton);
 	layout.addWidget(&entryPlusButton);
+	layout.addWidget(&entryMinusButton);
 
 	setLayout(&layout);
 }
@@ -41,7 +48,11 @@ MainWidget::MainWidget(): QWidget(), layout(), title("My Window"), trwid(), plus
 void MainWidget::popupNewEntryWindow()
 {
 	CustomToplevelTreeItem *lw = new CustomToplevelTreeItem("");
-	trwid.addTopLevelItem(lw);
+	if (popupForToplevelEntry) {
+		trwid.addTopLevelItem(lw);
+	} else {
+		selectedItem->addChild(lw);
+	}
 	emit entryPopup.popUp(lw);
 }
 
@@ -54,17 +65,45 @@ void MainWidget::unpopupNewEntryWindow(CustomToplevelTreeItem* lwi)
 		trwid.removeItemWidget(lwi, 0);
 		delete lwi;
 	}
+	popupForToplevelEntry = true;
 //	lwid.addItem(new CustomListWidgetItem(str));
 }
 
 void MainWidget::itemClicked(QTreeWidgetItem* item)
 {
 	CustomToplevelTreeItem *it = static_cast<CustomToplevelTreeItem*>(item);
-	if (item->childCount() == 0) {
-		entryPlusButton.setText(QString("- ").append(item->text(0)));
-		return;
+	selectedItem = it;
+	entryMinusButton.setText(QString("- ").append(it->text(0)));
+	entryMinusButton.setVisible(true);
+	if (it->isBeingWatched) {
+		entryPlusButton.setText(QString("+ ").append(it->text(0)));
+		entryPlusButton.setVisible(true);
+	} else {
+		entryPlusButton.setVisible(false);
 	}
-	entryPlusButton.setText(QString("+ ").append(item->text(0)));
+}
+
+void MainWidget::addItem()
+{
+	if (selectedItem == nullptr)
+		return;
+
+	popupForToplevelEntry = false;
+	popupNewEntryWindow();
+}
+
+void MainWidget::removeItem()
+{
+	if (selectedItem == nullptr)
+		return;
+	removeSelected();
+}
+
+inline void MainWidget::removeSelected()
+{
+	trwid.removeItemWidget(selectedItem, 0);
+	delete selectedItem;
+	selectedItem = nullptr;
 }
 
 MainWidget::~MainWidget() {

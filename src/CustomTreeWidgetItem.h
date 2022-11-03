@@ -2,7 +2,7 @@
  * CustomTreeWidgetItem.h
  *
  *  Created on: Nov 1, 2022
- *      Author: kk
+ *      Author: kon-io
  */
 
 #ifndef CUSTOMTREEWIDGETITEM_H_

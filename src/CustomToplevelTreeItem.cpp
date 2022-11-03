@@ -2,7 +2,7 @@
  * CustomListWidgetItem.cpp
  *
  *  Created on: Oct 19, 2022
- *      Author: kk
+ *      Author: kon-io
  */
 
 #include "CustomToplevelTreeItem.h"
