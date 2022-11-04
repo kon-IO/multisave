@@ -16,7 +16,7 @@
 #include "NewEntryPopup.h.meta"
 #endif
 
-NewEntryPopup::NewEntryPopup(QWidget *parent_): QWidget(parent_), lwi(nullptr), title("Add file path"), pathLabel("Path"), openDialog("Open dialog"), done("Done"), cancel("Cancel")
+NewEntryPopup::NewEntryPopup(QWidget *parent_): QWidget(parent_), lwi(nullptr), title(tr("Add file path")), pathLabel(tr("Path")), openDialog(tr("Open dialog")), done(tr("Done")), cancel(tr("Cancel"))
 {
 	// TODO Auto-generated constructor stub
 	setWindowFlags(Qt::Window
@@ -24,7 +24,7 @@ NewEntryPopup::NewEntryPopup(QWidget *parent_): QWidget(parent_), lwi(nullptr), 
 		| Qt::WindowMaximizeButtonHint);
 	setWindowModality(Qt::ApplicationModal);
 	setWindowTitle("MultiSave");
-	path.setPlaceholderText("File path...");
+	path.setPlaceholderText(tr("File path..."));
 
 	connect(&openDialog, &QPushButton::clicked, this, &NewEntryPopup::openFileDialog);
 	connect(&done, &QPushButton::clicked, this, &NewEntryPopup::closePopup);
@@ -50,9 +50,9 @@ void NewEntryPopup::openFileDialog()
 {
 	QString fname;
 	if (lwi->isBeingWatched)
-		fname = QFileDialog::getOpenFileName(this, "Track file", "${HOME_ENV}");
+		fname = QFileDialog::getOpenFileName(this, tr("Watch file"), "${HOME_ENV}");
 	else
-		fname = QFileDialog::getSaveFileName(this, "Track file", "${HOME_ENV}");
+		fname = QFileDialog::getSaveFileName(this, tr("Save watched file to"), "${HOME_ENV}");
 	path.setText(fname);
 }
 
@@ -67,7 +67,7 @@ void NewEntryPopup::closePopup()
 {
 	const QString str = QDir::toNativeSeparators(path.text());
 	if (!checkFile(str)) {
-		QMessageBox::warning(this, "Error", QString("File ").append(str).append(" could not be opened"));
+		QMessageBox::warning(this, tr("Error"), QString(tr("File ")).append(str).append(tr(" could not be opened")));
 		return;
 	}
 	lwi->setText(0, str);
