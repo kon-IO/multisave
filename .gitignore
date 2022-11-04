@@ -8,6 +8,8 @@ Debug/*
 Release/*
 debug/*
 release/*
+/debug/
+/release/
 Makefile
 Makefile.Debug
 Makefile.Release
