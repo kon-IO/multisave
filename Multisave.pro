@@ -1,4 +1,5 @@
 QT += widgets core gui
+
 CONFIG += qt release
 CONFIG += lrelease
 
