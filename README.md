@@ -9,11 +9,13 @@ You can also remove the files to be watched by clicking them and selecting '- [w
 
 
 ## Build configuration
-If you want to build without the Qt library's make tools, such as for development from Eclipse, you may need to configure some paths and copy some files in order to build this project. These are the paths you may need to configure:
+If you want to build without the Qt library's make tools, ie for development from Eclipse, you may need to configure some paths and copy some files in order to build this project. These are the paths you may need to configure:
 - Under Project > Properties > C/C++ Build > Settings, under the Tool Settings menu:
 	- C++ Compiler > Includes in the include paths (-I) box: /usr/include/x86_64-linux-gnu/qt5/. This should point at the Qt5 include directory. 
 	- C++ Linker > Libraries in the Library search path (-L) box: /usr/lib/x86_64-linux-gnu/. This should point at the Qt5 lib directory.
 - In src/meta.sh you may need to change moc to the absolute path of the Qt5 moc executable (located in the Qt5 bin directory or under /usr/lib/qt5/bin/ in Linux systems).
+
+On Windows under msys2, depending on how you run the executable, you may need to copy some .dll files from the mingw64/bin directory to the location of the executable. If you run the executable from Explorer it usually pops up an error message that says which DLLs are missing.
 
 ## Development notes
 *You may need to modify some project settings to be able to compile from Eclpise. See [Build configuration](#build-configuration)*.
