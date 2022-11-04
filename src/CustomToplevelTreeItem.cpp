@@ -39,7 +39,7 @@ void CustomToplevelTreeItem::fileChanged(const QString& path)
 //		f.close();
 		QFile::remove(fname);
 		QFile::copy(path, fname);
-		std::cout << child(i)->text(0).toStdString() << std::endl;
+		std::cout << fname.toStdString() << std::endl;
 	}
 	fsw.removePath(filename);
 	fsw.addPath(filename);
