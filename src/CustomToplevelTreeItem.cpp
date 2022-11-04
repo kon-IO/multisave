@@ -7,7 +7,9 @@
 
 #include "CustomToplevelTreeItem.h"
 
+#ifdef ECLIPSE_BUILD
 #include "CustomToplevelTreeItem.h.meta"
+#endif
 
 #include <iostream>
 #include <QtCore/QFile>

@@ -11,7 +11,10 @@
 #include <iostream>
 
 #include "NewEntryPopup.h"
+
+#ifdef ECLIPSE_BUILD
 #include "NewEntryPopup.h.meta"
+#endif
 
 NewEntryPopup::NewEntryPopup(QWidget *parent_): QWidget(parent_), lwi(nullptr), title("Add file path"), pathLabel("Path"), openDialog("Open dialog"), done("Done"), cancel("Cancel")
 {

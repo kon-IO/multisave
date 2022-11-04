@@ -8,7 +8,10 @@
 #include <iostream>
 
 #include "MainWidget.h"
+
+#ifdef ECLIPSE_BUILD
 #include "MainWidget.h.meta"
+#endif
 
 #include "CustomToplevelTreeItem.h"
 #include "CustomTreeWidgetItem.h"

@@ -6,7 +6,10 @@
  */
 
 #include "FileEntry.h"
+
+#ifdef ECLIPSE_BUILD
 #include "FileEntry.h.meta"
+#endif
 
 #include <QtCore/QFile>
 #include <QtGui/QKeyEvent>
