@@ -22,7 +22,7 @@ MainWidget::MainWidget(): QWidget(), popupForToplevelEntry(true), selectedItem(n
 	setWindowModality(Qt::NonModal);
 	title.setAlignment(Qt::AlignCenter);
 	trwid.setColumnCount(1);
-	trwid.setHeaderLabels({"Path"});
+	trwid.setHeaderLabels({tr("Path")});
 
 	QFont titleFont = title.font();
 	titleFont.setPointSize(24);
