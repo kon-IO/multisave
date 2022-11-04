@@ -25,17 +25,20 @@ CustomToplevelTreeItem::CustomToplevelTreeItem(const QString &text) :
 
 void CustomToplevelTreeItem::fileChanged(const QString& path)
 {
-	QFile file(path);
-	file.open(QIODevice::ReadOnly);
-	QByteArray arr = file.readAll();
-	file.close();
+//	QFile file(path);
+//	file.open(QIODevice::ReadOnly);
+//	QByteArray arr = file.readAll();
+//	file.close();
 
 	int count = childCount();
 	for (int i = 0; i < count; i++) {
-		QFile f(child(i)->text(0));
-		f.open(QIODevice::WriteOnly);
-		f.write(arr);
-		f.close();
+		QString fname = child(i)->text(0);
+//		QFile f(child(i)->text(0));
+//		f.open(QIODevice::WriteOnly);
+//		f.write(arr);
+//		f.close();
+		QFile::remove(fname);
+		QFile::copy(path, fname);
 		std::cout << child(i)->text(0).toStdString() << std::endl;
 	}
 	fsw.removePath(filename);
