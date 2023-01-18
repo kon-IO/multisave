@@ -4,6 +4,11 @@
 <context>
     <name>MainWidget</name>
     <message>
+        <location filename="../src/MainWidget.cpp" line="20"/>
+        <source>Add file to be watched</source>
+        <translation>Προσθήκη αρχείου προς παρακολούθηση</translation>
+    </message>
+    <message>
         <location filename="../src/MainWidget.cpp" line="26"/>
         <source>Path</source>
         <translation>Διαδρομή</translation>

@@ -17,7 +17,7 @@
 #include "CustomToplevelTreeItem.h"
 #include "CustomTreeWidgetItem.h"
 
-MainWidget::MainWidget(): QWidget(), popupForToplevelEntry(true), selectedItem(nullptr), layout(), title("Multisave"), trwid(), plusButton("Add file to be watched"), entryPlusButton(""), entryPopup(this)
+MainWidget::MainWidget(): QWidget(), popupForToplevelEntry(true), selectedItem(nullptr), layout(), title("Multisave"), trwid(), plusButton(tr("Add file to be watched")), entryPlusButton(""), entryPopup(this)
 {
 	// TODO Auto-generated constructor stub
 	setWindowModality(Qt::NonModal);
