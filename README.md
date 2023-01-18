@@ -14,7 +14,7 @@ It's pretty self explanatory, but in case you need clarification:
 
 
 ## Dev Build configuration
-If you want to build without the Qt library's make tools, ie for development from Eclipse, you may need to configure some paths and copy some files in order to build this project. These are the paths you may need to configure:
+If you want to build without the Qt library's make tools, ie for quick development from Eclipse, you may need to configure some paths and copy some files in order to build this project. These are the paths you may need to configure:
 - Under Project > Properties > C/C++ Build > Settings, under the Tool Settings menu:
 	- C++ Compiler > Includes in the include paths (-I) box: /usr/include/x86_64-linux-gnu/qt5/. This should point at the Qt5 include directory. 
 	- C++ Linker > Libraries in the Library search path (-L) box: /usr/lib/x86_64-linux-gnu/. This should point at the Qt5 lib directory.
