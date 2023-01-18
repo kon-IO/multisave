@@ -28,6 +28,6 @@ A Qt project file (.pro) is included. To build, open the terminal in the cloned 
 
 In order to change the build configuration to debug (it is release by default) open the .pro file and change 'CONFIG += qt release' to 'CONFIG += qt debug'. 
 
-## Requirements
-- The Qt5 dev library (core, gui and widgets components)
-- A c++17 compliant compiler
+## Build Requirements
+- The Qt5 library (qtbase functionality is used)
+- A c++11 compiler
