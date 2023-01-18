@@ -1,11 +1,16 @@
 # GUI Application to automatically copy a file to multiple locations once changed
 
+This is a beginner project.
+
 ## Usage
-You can add files to be watched for changes by pressing '+'
 
-You can add file paths to copy the watched file to by selecting it in the tree view and clicking '+ [watched file name]'. You can remove those file paths by selecting them and clicking '- [file path]'.
+It's pretty self explanatory, but in case you need clarification:
 
-You can also remove the files to be watched by clicking them and selecting '- [watched file name]'.
+- You can add files to be watched for changes by pressing 'Add file to be watched'
+
+- You can add file paths to copy the watched file to by selecting it in the tree view and clicking 'Add copy of [watched file name] to be saved'. You can remove those file paths by selecting them and clicking 'Remove [file path]'. Note that this will not delete the file from the file system.
+
+- You can also remove the files to be watched by clicking them and selecting 'Remove [watched file name]'.
 
 
 ## Build configuration
