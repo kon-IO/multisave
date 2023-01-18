@@ -17,7 +17,7 @@
 #include "CustomToplevelTreeItem.h"
 #include "CustomTreeWidgetItem.h"
 
-MainWidget::MainWidget(): QWidget(), popupForToplevelEntry(true), selectedItem(nullptr), layout(), title("Multisave"), trwid(), plusButton("+"), entryPlusButton(""), entryPopup(this)
+MainWidget::MainWidget(): QWidget(), popupForToplevelEntry(true), selectedItem(nullptr), layout(), title("Multisave"), trwid(), plusButton("Add file to be watched"), entryPlusButton(""), entryPopup(this)
 {
 	// TODO Auto-generated constructor stub
 	setWindowModality(Qt::NonModal);
@@ -43,6 +43,9 @@ MainWidget::MainWidget(): QWidget(), popupForToplevelEntry(true), selectedItem(n
 	plusButton.setFont(titleFont);
 	removeEntryButtons();
 
+	QFont plusFont = plusButton.font();
+	plusFont.setPointSize(18);
+	plusButton.setFont(plusFont);
 	layout.addWidget(&plusButton);
 	layout.addWidget(&entryPlusButton);
 	layout.addWidget(&entryMinusButton);
@@ -82,10 +85,10 @@ void MainWidget::itemClicked(QTreeWidgetItem* item)
 {
 	CustomTreeWidgetItem *it = static_cast<CustomTreeWidgetItem*>(item);
 	selectedItem = it;
-	entryMinusButton.setText(QString("- ").append(it->text(0)));
+	entryMinusButton.setText(tr("Remove ").append(it->text(0)));
 	entryMinusButton.setVisible(true);
 	if (it->isBeingWatched) {
-		entryPlusButton.setText(QString("+ ").append(it->text(0)));
+		entryPlusButton.setText(tr("Add copy of ").append(it->text(0)).append(tr(" to be saved")));
 		entryPlusButton.setVisible(true);
 	} else {
 		entryPlusButton.setVisible(false);

@@ -4,9 +4,24 @@
 <context>
     <name>MainWidget</name>
     <message>
-        <location filename="../src/MainWidget.cpp" line="25"/>
+        <location filename="../src/MainWidget.cpp" line="26"/>
         <source>Path</source>
         <translation>Διαδρομή</translation>
+    </message>
+    <message>
+        <location filename="../src/MainWidget.cpp" line="88"/>
+        <source>Remove </source>
+        <translation>Αφαίρεση </translation>
+    </message>
+    <message>
+        <location filename="../src/MainWidget.cpp" line="91"/>
+        <source>Add copy of </source>
+        <translation>Προσθήκη αντιγράφου του </translation>
+    </message>
+    <message>
+        <location filename="../src/MainWidget.cpp" line="91"/>
+        <source> to be saved</source>
+        <translation> για αποθήκευση</translation>
     </message>
 </context>
 <context>
