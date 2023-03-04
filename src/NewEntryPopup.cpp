@@ -50,9 +50,9 @@ void NewEntryPopup::openFileDialog()
 {
 	QString fname;
 	if (lwi->isBeingWatched)
-		fname = QFileDialog::getOpenFileName(this, tr("Watch file"), "${HOME_ENV}");
+		fname = QFileDialog::getOpenFileName(this, tr("Watch file"), "");
 	else
-		fname = QFileDialog::getSaveFileName(this, tr("Save watched file as"), "${HOME_ENV}");
+		fname = QFileDialog::getSaveFileName(this, tr("Save watched file as"), "");
 	path.setText(fname);
 }
 
